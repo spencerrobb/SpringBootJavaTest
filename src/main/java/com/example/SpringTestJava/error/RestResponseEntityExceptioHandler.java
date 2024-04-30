@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ResponseStatus
 public class RestResponseEntityExceptioHandler  extends ResponseEntityExceptionHandler {
 
-
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<StatusResponse> customerNotFoundException(CustomerNotFoundException exception, WebRequest request){
         StatusResponse statusResponse = new StatusResponse();

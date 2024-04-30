@@ -1,7 +1,5 @@
 package com.example.SpringTestJava.response;
 
-import com.example.SpringTestJava.Enums.AccountTypeEnum;
-import com.example.SpringTestJava.entity.Account;
 import com.example.SpringTestJava.entity.Customer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -10,14 +8,23 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomerResponse {
 
+    private String customerNumber;
     private String customerName;
     private String customerMobile;
     private String customerEmail;
     private String address1;
     private String address2;
-    private List<AccountResponse> accountList;
+    private List<AccountResponse> savings;
     private Integer transactionStatusCode;
     private Object transactionStatusDescription;
+
+    public String getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
+    }
 
     public Integer getTransactionStatusCode() {
         return transactionStatusCode;
@@ -35,12 +42,12 @@ public class CustomerResponse {
         this.transactionStatusDescription = transactionStatusDescription;
     }
 
-    public List<AccountResponse> getAccountList() {
-        return accountList;
+    public List<AccountResponse> getSavings() {
+        return savings;
     }
 
-    public void setAccountList(List<AccountResponse> accountList) {
-        this.accountList = accountList;
+    public void setSavings(List<AccountResponse> savings) {
+        this.savings = savings;
     }
 
     public CustomerResponse(Customer customer) {
@@ -50,6 +57,7 @@ public class CustomerResponse {
             this.customerEmail=customer.getCustomerEmail();
             this.address1=customer.getAddress1();
             this.address2=customer.getAddress2();
+            this.customerNumber=String.valueOf(customer.getCustomerNumber());
         }
     }
 

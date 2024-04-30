@@ -5,7 +5,6 @@ import com.example.SpringTestJava.dto.CustomerRequestDto;
 import com.example.SpringTestJava.entity.Account;
 import com.example.SpringTestJava.entity.Customer;
 import com.example.SpringTestJava.error.CustomerNotFoundException;
-import com.example.SpringTestJava.repository.AccountRepository;
 import com.example.SpringTestJava.repository.CustomerRepository;
 import com.example.SpringTestJava.response.AccountResponse;
 import com.example.SpringTestJava.response.CustomerResponse;
@@ -16,10 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -75,7 +72,8 @@ public class CustomerServiceImpl implements CustomerService{
         CustomerResponse customerResponse = new CustomerResponse(customer);
         List<AccountResponse> accountList = new ArrayList<>();
         accountList.add(accountResponse);
-        customerResponse.setAccountList(accountList);
+
+        customerResponse.setSavings(accountList);
         customerResponse.setTransactionStatusCode(HttpStatus.FOUND.value());
         customerResponse.setTransactionStatusDescription("Customer Account Found");
 
