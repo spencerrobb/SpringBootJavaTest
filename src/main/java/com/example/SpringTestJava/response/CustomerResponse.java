@@ -15,22 +15,31 @@ public class CustomerResponse {
     private String customerEmail;
     private String address1;
     private String address2;
-    private List<Account> accountList;
-    private StatusResponse statusResponse;
+    private List<AccountResponse> accountList;
+    private Integer transactionStatusCode;
+    private Object transactionStatusDescription;
 
-    public StatusResponse getStatusResponse() {
-        return statusResponse;
+    public Integer getTransactionStatusCode() {
+        return transactionStatusCode;
     }
 
-    public void setStatusResponse(StatusResponse statusResponse) {
-        this.statusResponse = statusResponse;
+    public void setTransactionStatusCode(Integer transactionStatusCode) {
+        this.transactionStatusCode = transactionStatusCode;
     }
 
-    public List<Account> getAccountList() {
+    public Object getTransactionStatusDescription() {
+        return transactionStatusDescription;
+    }
+
+    public void setTransactionStatusDescription(Object transactionStatusDescription) {
+        this.transactionStatusDescription = transactionStatusDescription;
+    }
+
+    public List<AccountResponse> getAccountList() {
         return accountList;
     }
 
-    public void setAccountList(List<Account> accountList) {
+    public void setAccountList(List<AccountResponse> accountList) {
         this.accountList = accountList;
     }
 

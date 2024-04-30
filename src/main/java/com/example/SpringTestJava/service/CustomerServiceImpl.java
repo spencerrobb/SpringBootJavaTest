@@ -5,7 +5,9 @@ import com.example.SpringTestJava.dto.CustomerRequestDto;
 import com.example.SpringTestJava.entity.Account;
 import com.example.SpringTestJava.entity.Customer;
 import com.example.SpringTestJava.error.CustomerNotFoundException;
+import com.example.SpringTestJava.repository.AccountRepository;
 import com.example.SpringTestJava.repository.CustomerRepository;
+import com.example.SpringTestJava.response.AccountResponse;
 import com.example.SpringTestJava.response.CustomerResponse;
 import com.example.SpringTestJava.response.StatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private AccountService accountService;
 
     @Override
     public Object createAccount(CustomerRequestDto customerRequestDto) {
@@ -59,22 +64,22 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Object customerInquiry(Integer customerNumber) throws CustomerNotFoundException {
         Optional<Customer> custOptional= customerRepository.findById(customerNumber);
+
         if(!custOptional.isPresent()){
             throw new CustomerNotFoundException("Customer Not Found");
         }
         Customer customer = customerRepository.findById(customerNumber).get();
+        Account account = new Account(10001,AccountTypeEnum.S.getDscp(),500);
 
-                CustomerResponse customerResponse = new CustomerResponse(customer);
+        AccountResponse accountResponse = new AccountResponse(account);
+        CustomerResponse customerResponse = new CustomerResponse(customer);
+        List<AccountResponse> accountList = new ArrayList<>();
+        accountList.add(accountResponse);
+        customerResponse.setAccountList(accountList);
+        customerResponse.setTransactionStatusCode(HttpStatus.FOUND.value());
+        customerResponse.setTransactionStatusDescription("Customer Account Found");
 
-                Account account = new Account(10001,AccountTypeEnum.C.getDscp(),500);
-                List<Account> accountList = new ArrayList<>();
-                accountList.add(account);
-                customerResponse.setAccountList(accountList);
-                StatusResponse statusResponse = new StatusResponse();
-                statusResponse.setTransactionStatusCode(HttpStatus.FOUND.value());
-                statusResponse.setTransactionStatusDescription("Customer Account Found");
-                customerResponse.setStatusResponse(statusResponse);
-                return ResponseEntity.status(HttpStatus.FOUND).body(customerResponse);
+        return ResponseEntity.status(HttpStatus.FOUND).body(customerResponse);
 
     }
 
