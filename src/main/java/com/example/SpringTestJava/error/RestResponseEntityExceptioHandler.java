@@ -13,11 +13,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ResponseStatus
 public class RestResponseEntityExceptioHandler  extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(MissingRequiredFieldsException.class)
-    public ResponseEntity<ErrorMessage> MissingRequiredFieldsException(MissingRequiredFieldsException exception, WebRequest request ){
-        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
-    }
 
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<StatusResponse> customerNotFoundException(CustomerNotFoundException exception, WebRequest request){
