@@ -1,8 +1,8 @@
 package com.example.SpringTestJava.dto;
 
 import com.example.SpringTestJava.Enums.AccountTypeEnum;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+
+
 
 public class CustomerRequestDto {
 

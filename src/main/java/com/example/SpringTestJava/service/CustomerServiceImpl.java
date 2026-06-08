@@ -84,19 +84,19 @@ public class CustomerServiceImpl implements CustomerService{
     public List<String> validateCustomerFields(CustomerRequestDto customerRequestDto){
 
         List<String> errorList = new ArrayList<>();
-        if(customerRequestDto.getCustomerName().isEmpty()){
+        if(customerRequestDto.getCustomerName()==null || customerRequestDto.getCustomerName().isEmpty()){
             errorList.add("Customer Name is required field");
         }
-        if(customerRequestDto.getCustomerMobile().isEmpty()){
+        if(customerRequestDto.getCustomerMobile()==null || customerRequestDto.getCustomerMobile().isEmpty()){
             errorList.add("Mobile No is required field");
         }
-        if(customerRequestDto.getCustomerEmail().isEmpty()){
+        if(customerRequestDto.getCustomerEmail()==null || customerRequestDto.getCustomerEmail().isEmpty()){
             errorList.add("Email is required field");
         }
-        if(customerRequestDto.getAddress1().isEmpty()){
+        if(customerRequestDto.getAddress1() ==null  || customerRequestDto.getAddress1().isEmpty()){
             errorList.add("Address1 is required field");
         }
-        if(customerRequestDto.getAddress2().isEmpty()){
+        if(customerRequestDto.getAddress2() ==null || customerRequestDto.getAddress2().isEmpty()){
             errorList.add("Address2 is required field");
         }
 
